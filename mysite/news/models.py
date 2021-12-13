@@ -1,4 +1,5 @@
 from django.db import models
+
 #БД
 
 class News(models.Model):
