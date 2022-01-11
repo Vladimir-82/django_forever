@@ -3,7 +3,8 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', index, name='home'), # при обращении к главной странице подключаем метод индекс
-    path('category+'
-         '.0/<int:category_id>/', get_category, name='category'), # при обращении к КАТЕГОРИЯМ подключаем метод индекс
+    path('', index, name='home'),
+    path('category/<int:category_id>/', get_category, name='category'),
+    path('news/<int:news_id>/', view_news, name='view_news'),
+    path('news/add-news/', add_news, name='add_news'),
 ]

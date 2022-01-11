@@ -1,1 +1,0 @@
-# https://djbook.ru/rel3.0/ref/templates/builtins.html#std-templatetag-for
