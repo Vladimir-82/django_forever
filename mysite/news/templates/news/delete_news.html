@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Удаление статьи :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+
+<h1>Удаление новости</h1>
+
+<div class="card-body">
+        <div class="media">
+            {% if news_item.photo %}
+            <img src="{{ news_item.photo.url }}" alt="" width="350" class="mr-3">
+            {% else %}
+            <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="mr-3">
+            {% endif %}
+            <div class="media-body">
+                <h5 class="card-title">{{ news_item.title }}</h5>
+                <p class="card-text">{{ news_item.content|safe|linebreaks }}</p>
+            </div>
+        </div>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-block">Удалить новость</button>
+</form>
+
+{% endblock %}

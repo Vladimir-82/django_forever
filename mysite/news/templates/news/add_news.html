@@ -12,10 +12,10 @@
 
 <h1>Добавление новости</h1>
 
-<form action="{% url 'add_news' %}" method="post">
+<form action="{% url 'add_news' %}" method="post">       {#action="{% url 'add_news' %}" - можно не прописывать#}
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>
+    {{ form.as_p }}     {#заключает поля формы в параграф#}
+    <button type="submit" class="btn btn-primary btn-block">Добавить новость</button>  {#type="submit" - отправить форму#}
 </form>
 
 {% endblock %}
