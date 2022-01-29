@@ -6,10 +6,10 @@ from .forms import NewsForm
 
 
 class HomeNews(ListView):
-    model = News  #аналог news = News.objects.all() в index
-    template_name = 'news/home_news_list.html'  # шаблон
-    context_object_name = 'news'  #имя переменной, которая отправляется в шаблон
-    # extra_context = {'title': 'Главная'}  # не рекомендуется но очень удобно для титульника вместо функции внизу
+    model = News
+    template_name = 'news/home_news_list.html'
+    context_object_name = 'news'
+    # extra_context = {'title': 'Главная'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -17,7 +17,7 @@ class HomeNews(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(is_published=True)  # покажет только новости с чекбоксами
+        return News.objects.filter(is_published=True)
 
 
 class UpdateNews(UpdateView):
@@ -37,8 +37,8 @@ class DeleteNews(DeleteView):
 class NewsByCategory(ListView):
     model = News
     template_name = 'news/home_news_list.html'
-    context_object_name = 'news' #имя переменной, которая отправляется в шаблон
-    allow_empty = False     #запрещаем показ пустых списков (не существующих) это исключает 500 ошибку при выборе и отдаст 404
+    context_object_name = 'news'
+    allow_empty = False
 
 
     def get_queryset(self):
@@ -51,7 +51,7 @@ class NewsByCategory(ListView):
 
 class ViewNews(DetailView):
     model = News
-    context_object_name = 'news_item'  #имя переменной, которая отправляется в шаблон
+    context_object_name = 'news_item'
     # template_name = 'news/news_detail'
     # pk_url_kwarg = 'news_id'
 
@@ -83,10 +83,10 @@ def add_news(request):
         form = NewsForm(request.POST)
         if form.is_valid():
             news = form.save()
-            return redirect(news)  # переадресация после сохранения
+            return redirect(news)
     else:
-        form = NewsForm()  #  создается пустая форма
-    return render(request, 'news/add_news.html', {'form': form})    #рисуем шаблон
+        form = NewsForm()
+    return render(request, 'news/add_news.html', {'form': form})
 
 
 # не связанные формы
@@ -94,8 +94,8 @@ def add_news(request):
 #     if request.method == 'POST':
 #         form = NewsForm(request.POST)
 #         if form.is_valid():
-#             news = News.objects.create(**form.cleaned_data)  # сохраняет новость (в связаных формах - save())
-#             return redirect(news)  # переадресация после сохранения
+#             news = News.objects.create(**form.cleaned_data)
+#             return redirect(news)
 #     else:
 #         form = NewsForm()
 #     return render(request, 'news/add_news.html', {'form': form})
