@@ -18,13 +18,14 @@ SECRET_KEY = '*ky(o6p+iw1(8u4fx$^fwnpdqt337(yw3*uk%g02b3*8(x-av$'
 
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
 
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -125,6 +127,9 @@ INTERNAL_IPS = [
 import dj_database_url
 
 db_from_env = dj_database_url.config()
+
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 
