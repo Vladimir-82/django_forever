@@ -2,7 +2,26 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
 
 from .models import News, Category
-from .forms import NewsForm
+from .forms import NewsForm, UserRegisterForm
+from django.contrib import messages
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы успешно зарегистрировались')
+            return redirect('login')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'news/register.html', {"form": form})
+
+
+def login(request):
+    return render(request, 'news/login.html')
 
 
 class HomeNews(ListView):

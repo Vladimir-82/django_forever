@@ -18,7 +18,7 @@ SECRET_KEY = '*ky(o6p+iw1(8u4fx$^fwnpdqt337(yw3*uk%g02b3*8(x-av$'
 
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
